@@ -1,0 +1,33 @@
+extends layout
+
+include mixins/_reviewForm
+include mixins/_review
+
+block content
+  .single
+    .single__hero
+      img.single__image(src=`/uploads/${store.photo || "store.png"}`)
+      h2.title--single.title
+        a(href=`/store/${store.slug}`) #{store.name}
+      if user && store.author.equals(user._id)
+        .store__action.store__action--edit(style="z-index:1")
+          a(href=`/stores/${store._id}/edit`)
+              != h.icon("pencil")    
+  .single__details.inner
+    img.single__map(src=h.staticMap(store.location.coordinates))
+    p.single__location= store.location.address
+    p= store.description
+    if store.tags
+      ul.tags
+        each tag in store.tags
+          li.tag
+            a.tag__link(hred=`/tags/${tags}`)
+               span.tag__text #{tag}
+    if user
+      +reviewForm(store)
+      
+    if store.reviews
+      .reviews
+        each r in store.reviews
+          .review
+            +review(r)
