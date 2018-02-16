@@ -1,9 +1,12 @@
 extends layout
 
 include mixins/_storeForm
+include mixins/_deleteStore
 
 block content
   .inner
     h2= title
     +storeForm(store)
+    if store
+      +deleteStore(store)
 

@@ -2868,6 +2868,10 @@ var _map = __webpack_require__(12);
 
 var _map2 = _interopRequireDefault(_map);
 
+var _confirmDelete = __webpack_require__(40);
+
+var _confirmDelete2 = _interopRequireDefault(_confirmDelete);
+
 var _bling = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -2882,6 +2886,35 @@ if ((0, _bling.$$)("form.heart")) {
   // With bling; using $$ you can add an event listener to multiple items in a nodelist rather than having to add using forEach
   (0, _bling.$$)("form.heart").on("submit", _heart2.default);
 }
+
+(0, _bling.$)("button[name=deleteStore]").on("click", _confirmDelete2.default);
+
+/***/ }),
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _bling = __webpack_require__(1);
+
+function confirmDelete(e) {
+  e.preventDefault();
+  console.log(e);
+  (0, _bling.$)("#confirm__button").setAttribute("style", "visibility: visible; padding:10px; height:50px;");
+}
+
+exports.default = confirmDelete;
 
 /***/ })
 /******/ ]);

@@ -101,6 +101,12 @@ exports.updateStore = async (req, res) => {
   // Redirect them to the store and tell them it worked
 };
 
+exports.deleteStore = async (req, res) => {
+  await Store.remove({ _id: req.params.id });
+  req.flash("success", "Store Deleted!");
+  res.redirect("/stores");
+};
+
 exports.getStoreBySlug = async (req, res, next) => {
   const store = await Store.findOne({ slug: req.params.slug }).populate("author reviews");
   if (!store) return next();

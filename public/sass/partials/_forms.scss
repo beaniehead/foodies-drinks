@@ -1,32 +1,55 @@
-input, textarea {
-  width:100%;
-  padding:10px;
-  border: 1px solid $grey;
-  &.input {
-    &--error {
-      border-color: red;
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid $grey;
+    &.input {
+        &--error {
+            border-color: red;
+        }
     }
-  }
 }
 
 label {
-  padding: 10px 0;
-  display: block;
+    padding: 10px 0;
+    display: block;
 }
 
 .form {
-  background: white;
-  padding: 2rem;
-  box-shadow: $grad;
-  & + .form {
-    margin-top: 4rem;
-  }
-  // I know this isn't bem but meh
-  h2 {
-    margin: 0;
-    font-size: 2rem;
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid $grey;
-  }
+    background: white;
+    padding: 2rem;
+    box-shadow: $grad;
+    &+.form {
+        margin-top: 4rem;
+    } // I know this isn't bem but meh
+    h2 {
+        margin: 0;
+        font-size: 2rem;
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid $grey;
+    }
+}
+
+form {
+    .button {
+        &.delete {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        &.confirm {
+            visibility: hidden;
+            height: 0;
+            padding: 0;
+            background-color: $purple;
+            color: $gray;
+            transition: all 500ms ease-out;
+        }
+    }
+    &.card {
+        &--delete {
+            padding: 30px;
+        }
+    }
 }

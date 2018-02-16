@@ -496,11 +496,13 @@ p {
   font-size: 10rem;
   text-align: center; }
 
-input, textarea {
+input,
+textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #e6e6e6; }
-  input.input--error, textarea.input--error {
+  input.input--error,
+  textarea.input--error {
     border-color: red; }
 
 label {
@@ -519,6 +521,22 @@ label {
     padding-bottom: 2rem;
     margin-bottom: 2rem;
     border-bottom: 1px solid #e6e6e6; }
+
+form .button.delete {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px; }
+
+form .button.confirm {
+  visibility: hidden;
+  height: 0;
+  padding: 0;
+  background-color: #282458;
+  color: #eee;
+  transition: all 500ms ease-out; }
+
+form.card--delete {
+  padding: 30px; }
 
 .search {
   position: relative;

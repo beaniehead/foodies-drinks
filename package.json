@@ -1,12 +1,12 @@
 {
   "name": "foodies-and-drinks",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "engines": {
     "node": ">= 7.6.0"
   },
-  "now":{
-    "dotenv":"variables.env.now"
+  "now": {
+    "dotenv": "variables.env.now"
   },
   "scripts": {
     "start": "node ./start.js",
@@ -38,6 +38,7 @@
     "forever": "0.15.3",
     "glob": "7.1.1",
     "html-to-text": "3.2.0",
+    "jade-bootstrap": "^1.0.14",
     "jimp": "0.2.27",
     "juice": "4.0.2",
     "md5": "2.2.1",

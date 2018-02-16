@@ -1,0 +1,4 @@
+mixin deleteStore(store)
+    form.card.card--delete(action=`/store/${store._id}/delete` method="POST")
+      button.button.delete(value="Delete Store" name="deleteStore") Delete Store
+      input.button.confirm(type="submit" value="Confirm Delete" id="confirm__button")
