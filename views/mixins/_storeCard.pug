@@ -1,6 +1,5 @@
 mixin storeCard(store = {})
   .store
-
     .store__hero
       .store__actions
         if user
@@ -23,3 +22,8 @@ mixin storeCard(store = {})
         a(href=`/store/${store.slug}`) #{store.name}
     .store__details
       p= store.description.split(" ").slice(0,20).join(" ")
+    .store__location
+      if store.location.city && store.location.country
+        p= `${store.location.city}, ${store.location.country}`
+      else
+        p= store.location.address

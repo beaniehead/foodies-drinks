@@ -58,9 +58,7 @@ function loadPlaces(map, lat = mapOptions.center.lat, lng = mapOptions.center.ln
         `;
         infoWindow.setContent(html);
         infoWindow.open(map, marker);
-        console.log(this.place);
       }));
-
       // after looping over markers, zoom map using bounds
       map.setCenter(bounds.getCenter());
       map.fitBounds(bounds);

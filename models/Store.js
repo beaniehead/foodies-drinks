@@ -32,7 +32,9 @@ const storeSchema = new mongoose.Schema(
       address: {
         type: String,
         required: "You must supply an address!"
-      }
+      },
+      city: { type: String },
+      country: { type: String },
     },
     photo: String,
     author: {

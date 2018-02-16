@@ -17,6 +17,7 @@ router.post(
   "/add",
   storeController.upload,
   catchErrors(storeController.resize),
+  catchErrors(storeController.getAddressComponents),
   catchErrors(storeController.createStore)
 );
 
@@ -24,6 +25,7 @@ router.post(
   "/add/:id",
   storeController.upload,
   catchErrors(storeController.resize),
+  catchErrors(storeController.getAddressComponents),
   catchErrors(storeController.updateStore)
 );
 
@@ -72,7 +74,7 @@ router.get(
 
 router.get("/top", catchErrors(storeController.getTopStores));
 /*
-  API
+  APIs
 */
 
 router.get("/api/search", catchErrors(storeController.searchStores));

@@ -741,6 +741,8 @@ form.card--delete {
   margin: -1.25em 0 0 -1.25em; }
 
 .store {
+  display: -ms-grid;
+  display: grid;
   background: white;
   margin: 1.25em 0 0 1.25em;
   width: calc(33.3333% - 1.25em);
@@ -810,6 +812,17 @@ form.card--delete {
     object-fit: cover;
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
             clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%); }
+
+.store__location {
+  text-align: right;
+  padding-right: 10px;
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
+  color: #eee;
+  background: linear-gradient(45deg, #a026bf 10%, rgba(210, 9, 236, 0) 80%), linear-gradient(135deg, #16a8c5 20%, rgba(5, 179, 214, 0) 80%), linear-gradient(225deg, #065bf9 10%, rgba(5, 179, 214, 0) 80%); }
+  .store__location p {
+    line-height: 0.5; }
 
 .tags {
   margin: 0;

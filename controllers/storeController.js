@@ -6,6 +6,7 @@ const User = mongoose.model("User");
 const multer = require("multer");
 const jimp = require("jimp");
 const uuid = require("uuid");
+const googleMapsClient = require("@google/maps").createClient({ key: process.env.MAP_KEY, Promise });
 
 const multerOptions = {
   storage: multer.memoryStorage(),
@@ -18,6 +19,7 @@ const multerOptions = {
     }
   }
 };
+
 exports.homePage = (req, res) => {
   res.render("index", { title: "Home" });
 };
@@ -45,8 +47,48 @@ exports.resize = async (req, res, next) => {
   // once we have written the photo to our filesystem, keep going!
   next();
 };
+
+exports.getAddressComponents = async (req, res, next) => {
+  // Get the address component
+  const addressInfo = await googleMapsClient.geocode({ address: req.body.location.address }).asPromise();
+  const addressComps = addressInfo.json.results[0].address_components;
+  // Get country and city data for the store from location data
+  let countryIndex;
+  addressComps.forEach(obj => {
+    // If locality exists, set city to this
+    if (obj.types.includes("locality")) {
+      req.body.location.city = obj.long_name;
+    }
+    // If country exists - and it should - set country to this
+    if (obj.types.includes("country")) {
+      req.body.location.country = obj.long_name;
+      countryIndex = addressComps.indexOf(obj);
+    }
+  });
+  // If no data returned above
+  if (!req.body.location.city && !req.body.location.country) {
+    next();
+    return;
+  }
+  // If no locality set to - as user cannot input this data
+  if (!req.body.location.city) {
+    // If return array includes an object with type of country, and includes
+    if (countryIndex <= addressComps.length - 1 && countryIndex >= 1) {
+      // at least object before that, then set the city field to the long name of this object
+      // req.body.location.city = addressComps[countryIndex - 1].long_name;
+      // sets the city to the first address_component object name
+      req.body.location.city = addressComps[0].long_name;
+      // Otherwise, if there is only one field (the country field), then set the city value to the same
+    } else if (req.body.location.country) {
+      // If no country field, set it to -
+      req.body.location.city = addressComps[countryIndex].long_name;
+    }
+  }
+  next();
+};
 // if you don't use try{} catch(err){} you need to wrap it in catchErrors, so it handles error
 exports.createStore = async (req, res) => {
+  // Get user Id
   req.body.author = req.user._id;
   // as we are using strict schema, this will only pick up the object key:value pairs we defined in Store.js
   const store = await (new Store(req.body)).save();
@@ -72,6 +114,7 @@ exports.getStores = async (req, res) => {
     res.redirect(`/stores/page/${pages}`);
     return;
   }
+
   res.render("stores", { title: "Stores", count, pages, page, stores });
 };
 const confirmOwner = (store, user) => {
@@ -96,7 +139,7 @@ exports.updateStore = async (req, res) => {
     new: true, // return the new store instead of the old one
     runValidators: true
   }).exec();
-  req.flash("success", `Successfully updated ${store.name}. <a href="/stores/${store.slug}">View Store</a>`);
+  req.flash("success", `Successfully updated ${store.name}. <a href="/store/${store.slug}">View Store</a>`);
   res.redirect(`/stores/${store.id}/edit`);
   // Redirect them to the store and tell them it worked
 };
