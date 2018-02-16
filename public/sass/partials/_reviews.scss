@@ -42,11 +42,12 @@
     }
   }
   &__time {
-    font-size: 1.2rem;
+    font-size: 1.7rem;
     color: lighten(black, 60%);
   }
   &__stars {
     color: $yellow;
+    font-size:2rem;
   }
   &__body {
     padding: 2rem;

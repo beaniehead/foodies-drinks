@@ -990,10 +990,11 @@ label {
     .review__author .avatar {
       margin-right: 2rem; }
   .review__time {
-    font-size: 1.2rem;
+    font-size: 1.7rem;
     color: #999999; }
   .review__stars {
-    color: #ffb30e; }
+    color: #ffb30e;
+    font-size: 2rem; }
   .review__body {
     padding: 2rem; }
   .review p {
