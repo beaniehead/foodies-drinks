@@ -591,6 +591,8 @@ form.card--delete {
   .flash__text {
     -ms-flex: 1;
         flex: 1; }
+    .flash__text a {
+      color: #303030; }
   .flash__remove {
     background: none;
     border: 0; }
@@ -854,6 +856,7 @@ form.card--delete {
         background: #e6e6e6;
         padding: 1rem 1rem 1rem 4rem; }
       .tag__choice input:checked + label {
+        color: #eee;
         background: #282458; }
   .tag__link {
     background: #282458;

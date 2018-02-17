@@ -67,7 +67,6 @@ function loadPlaces(map, lat = mapOptions.center.lat, lng = mapOptions.center.ln
 
 function makeMap(mapDiv) {
   if (!mapDiv) return;
-
   function generateMap() {
     const map = new google.maps.Map(mapDiv, mapOptions);
     loadPlaces(map);
